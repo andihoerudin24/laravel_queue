@@ -12,6 +12,7 @@ use App\Jobs\PriorityTest;
 use App\Jobs\ProcessPodcast;
 use App\Jobs\RateLimitJobTest;
 use App\Jobs\ReleasingAJob;
+use App\Jobs\ShowProgressJob;
 use App\Jobs\SynchronousJobTest;
 use App\Jobs\TestDependencyJob;
 use App\Jobs\TestModelJob;
@@ -23,9 +24,11 @@ use App\Models\Product;
 use Exception;
 use Throwable;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Bus\Batch;
 
 
 class IndexController extends Controller
@@ -148,8 +151,35 @@ class IndexController extends Controller
 
         //BusfailJobTest::dispatch();
 
-        ReleasingAJob::dispatch();
+        // ReleasingAJob::dispatch();
+
+        $jobs = [];
+
+        for ($i=0; $i < 5; $i++) { 
+            $jobs[] = new ShowProgressJob($i);
+        }
+        $batch=Bus::batch($jobs)->then(function (Batch $batch) {
+            // All jobs completed successfully...
+            var_dump('All jobs completed successfully...');
+        })->catch(function (Batch $batch, Throwable $e) {
+            // First batch job failure detected...
+            var_dump('First batch job failure detected...');
+        })->finally(function (Batch $batch) {
+            // The batch has finished executing...
+            var_dump('The batch has finished executing...');
+        })->dispatch();
+        return redirect('/dashboard?batch_id='.$batch->id);
+       
     
+    }
+
+    public function dashboard(Request $request)
+    {
+       $batch = null;
+       if($request->batch_id){
+            $batch = Bus::findBatch($request->batch_id);
+       }
+       return view('dashboard',compact('batch'));
     }
 
 }

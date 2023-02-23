@@ -9,11 +9,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use DateTime;
+use Illuminate\Bus\Batchable;
 use Illuminate\Support\Facades\Log;
 
 class BusfailJobTest implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable ,InteractsWithQueue, Queueable, SerializesModels;
 
 
     //public $tries = 25;

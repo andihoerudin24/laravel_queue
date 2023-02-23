@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dispatch',[IndexController::class,'index'])->name('dispatch');
+Route::get('/dispatch/{batch_id?}',[IndexController::class,'index'])->name('dispatch');
+Route::get('/dashboard/{batch_id?}',[IndexController::class,'dashboard'])->name('dashboard');
