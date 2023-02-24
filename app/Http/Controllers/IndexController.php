@@ -8,7 +8,6 @@ use App\Jobs\DispatchAfterResponseTest;
 use App\Jobs\FailingJob;
 use App\Jobs\Jobbatchable;
 use App\Jobs\Jobbatchable2;
-use Illuminate\Bus\Batch;
 use App\Jobs\JobmiddlewareTest;
 use App\Jobs\JobSeparateMiddleware;
 use App\Jobs\OverlapsJob;
@@ -16,6 +15,8 @@ use App\Jobs\PriorityTest;
 use App\Jobs\ProcessPodcast;
 use App\Jobs\RateLimitJobTest;
 use App\Jobs\ReleasingAJob;
+use App\Jobs\ShowProgressJob;
+use App\Jobs\SkipIfBatchCancelledJob;
 use App\Jobs\SynchronousJobTest;
 use App\Jobs\TestDependencyJob;
 use App\Jobs\TestModelJob;
@@ -27,9 +28,11 @@ use App\Models\Product;
 use Exception;
 use Throwable;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Bus\Batch;
 
 
 class IndexController extends Controller
@@ -51,8 +54,8 @@ class IndexController extends Controller
         // $a->name = "testnama";
         // $a->save();
         //TestUniqueJobs::dispatch();
-        //JobmiddlewareTest::dispatch();
-        //JobSeparateMiddleware::dispatch();
+        // JobmiddlewareTest::dispatch();
+        // JobSeparateMiddleware::dispatch();
         // $a = new Product();
         // $a->id_priorities = 34;
         // $a->name = "testnama";
@@ -152,70 +155,66 @@ class IndexController extends Controller
 
         //BusfailJobTest::dispatch();
 
-        //ReleasingAJob::dispatch();
+        // ReleasingAJob::dispatch();
 
+        // $jobs = [];
 
-        //FailingJob::dispatch();
-
-
-        //Jobbatchable::dispatch();
-
-
-        // $batch = Bus::batch([
-        //     new Jobbatchable,
-        //     //new BusfailJobTest
-        // ])->then(function (Batch $batch) {
-        //    var_dump('semua job selsai');
+        // for ($i=0; $i < 5; $i++) { 
+        //     $jobs[] = new ShowProgressJob($i);
+        // }
+        // $batch=Bus::batch($jobs)->then(function (Batch $batch) {
+        //     // All jobs completed successfully...
+        //     var_dump('All jobs completed successfully...');
         // })->catch(function (Batch $batch, Throwable $e) {
-        //     var_dump('job pertama agagal');
+        //     // First batch job failure detected...
+        //     var_dump('First batch job failure detected...');
         // })->finally(function (Batch $batch) {
-        //     var_dump('job selesai di execute');
         //     // The batch has finished executing...
-        // })->name('ANDI')->dispatch();
-        // return $batch->id;
+        //     var_dump('The batch has finished executing...');
+        //     var_dump($batch->totalJobs);
+        //     var_dump($batch->pendingJobs);
+        //     var_dump($batch->failedJobs);
+        //     var_dump($batch->processedJobs());
+        // })->dispatch();
+        // return redirect('/dashboard?batch_id='.$batch->id);
 
-        // $batch = Bus::batch([
-        //     new Jobbatchable,
-        //     //new BusfailJobTest
-        // ])->then(function (Batch $batch) {
-        //    var_dump('semua job selsai');
+        // $jobs = [];
+
+        // for ($i=0; $i < 200; $i++) { 
+        //     $jobs[] = new SkipIfBatchCancelledJob($i);
+        // }
+        // $batch=Bus::batch($jobs)->then(function (Batch $batch) {
+        //     // All jobs completed successfully...
+        //     var_dump('All jobs completed successfully...');
         // })->catch(function (Batch $batch, Throwable $e) {
-        //     var_dump('job pertama agagal');
+        //     // First batch job failure detected...
+        //     var_dump('First batch job failure detected...');
         // })->finally(function (Batch $batch) {
-        //     var_dump('job selesai di execute');
         //     // The batch has finished executing...
-        // })->onConnection("database")->onQueue("hoerudin")->name('ANDI')->dispatch();
-        // return $batch->id;
-
-
-        // Bus::batch([
-        //     [
-        //         new Jobbatchable(),
-        //         new Jobbatchable2(),
-        //     ],
-        //     [
-        //         new Jobbatchable(),
-        //         new Jobbatchable2(),
-        //     ],
-        // ])->then(function (Batch $batch) {
-        //     var_dump($batch->id);
+        //     var_dump('The batch has finished executing...');
+        //     var_dump($batch->totalJobs);
+        //     var_dump($batch->pendingJobs);
+        //     var_dump($batch->failedJobs);
         // })->dispatch();
 
 
-        $batch=Bus::batch([
-            [
-                new Jobbatchable(),
-                new Jobbatchable2(),
-            ],
-            [
-                new Jobbatchable(),
-                new Jobbatchable2(),
-            ],
-        ])->then(function (Batch $batch) {
-             var_dump($batch->id);
-        })->dispatch();
-        echo $batch->progress();
+        // $batch = Bus::batch([
+        //     new Jobbatchable2,
+        //     new BusfailJobTest
+        //     ])->then(function (Batch $batch) {
+        //     var_dump('All jobs completed successfully...');
+        // })->allowFailures()->dispatch();
+       
     
+    }
+
+    public function dashboard(Request $request)
+    {
+       $batch = null;
+       if($request->batch_id){
+            $batch = Bus::findBatch($request->batch_id);
+       }
+       return view('dashboard',compact('batch'));
     }
 
 }
