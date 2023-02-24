@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Jobs\BusfailJobTest;
 use App\Jobs\DispacthingJobTest;
 use App\Jobs\DispatchAfterResponseTest;
+use App\Jobs\FailingJob;
+use App\Jobs\Jobbatchable;
+use App\Jobs\Jobbatchable2;
+use Illuminate\Bus\Batch;
 use App\Jobs\JobmiddlewareTest;
 use App\Jobs\JobSeparateMiddleware;
 use App\Jobs\OverlapsJob;
@@ -148,7 +152,69 @@ class IndexController extends Controller
 
         //BusfailJobTest::dispatch();
 
-        ReleasingAJob::dispatch();
+        //ReleasingAJob::dispatch();
+
+
+        //FailingJob::dispatch();
+
+
+        //Jobbatchable::dispatch();
+
+
+        // $batch = Bus::batch([
+        //     new Jobbatchable,
+        //     //new BusfailJobTest
+        // ])->then(function (Batch $batch) {
+        //    var_dump('semua job selsai');
+        // })->catch(function (Batch $batch, Throwable $e) {
+        //     var_dump('job pertama agagal');
+        // })->finally(function (Batch $batch) {
+        //     var_dump('job selesai di execute');
+        //     // The batch has finished executing...
+        // })->name('ANDI')->dispatch();
+        // return $batch->id;
+
+        // $batch = Bus::batch([
+        //     new Jobbatchable,
+        //     //new BusfailJobTest
+        // ])->then(function (Batch $batch) {
+        //    var_dump('semua job selsai');
+        // })->catch(function (Batch $batch, Throwable $e) {
+        //     var_dump('job pertama agagal');
+        // })->finally(function (Batch $batch) {
+        //     var_dump('job selesai di execute');
+        //     // The batch has finished executing...
+        // })->onConnection("database")->onQueue("hoerudin")->name('ANDI')->dispatch();
+        // return $batch->id;
+
+
+        // Bus::batch([
+        //     [
+        //         new Jobbatchable(),
+        //         new Jobbatchable2(),
+        //     ],
+        //     [
+        //         new Jobbatchable(),
+        //         new Jobbatchable2(),
+        //     ],
+        // ])->then(function (Batch $batch) {
+        //     var_dump($batch->id);
+        // })->dispatch();
+
+
+        $batch=Bus::batch([
+            [
+                new Jobbatchable(),
+                new Jobbatchable2(),
+            ],
+            [
+                new Jobbatchable(),
+                new Jobbatchable2(),
+            ],
+        ])->then(function (Batch $batch) {
+             var_dump($batch->id);
+        })->dispatch();
+        echo $batch->progress();
     
     }
 

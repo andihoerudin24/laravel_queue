@@ -9,11 +9,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use DateTime;
+use Illuminate\Bus\Batchable;
 use Illuminate\Support\Facades\Log;
 
 class BusfailJobTest implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, Batchable ,InteractsWithQueue, Queueable, SerializesModels;
 
 
     //public $tries = 25;
@@ -50,7 +51,7 @@ class BusfailJobTest implements ShouldQueue
 
     public function handle(): void
     {
-        //$this->id;
+        $this->id;
         echo "throttling job test";
         Log::info('Releasing job back to queue after 5 seconds');
         $this->release(60);

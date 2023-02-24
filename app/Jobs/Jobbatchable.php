@@ -1,29 +1,25 @@
 <?php
 
 namespace App\Jobs;
-use Exception;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
-use Throwable;
+use Illuminate\Bus\Batchable;
 
-class ReleasingAJob implements ShouldQueue
+class Jobbatchable implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    //public $tries = 3;
-
+    use  Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
      */
     public function __construct()
     {
-    
+        //
     }
 
     /**
@@ -31,10 +27,10 @@ class ReleasingAJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->release(1);
-        echo "release";
-        Log::info('Releasing job setiap 1 detik');
+        
+        var_dump($this->batchId);
+        //$this->id;
+        //echo "jobbatching run";
+        // Import a portion of the CSV file...
     }
-
-   
 }
