@@ -204,7 +204,28 @@ class IndexController extends Controller
         //     ])->then(function (Batch $batch) {
         //     var_dump('All jobs completed successfully...');
         // })->allowFailures()->dispatch();
-       
+
+
+        $finaldata = [];
+        $aa = [];
+        $datatext = config('config.text');
+        $start  = config('config.start');
+        foreach ($datatext as $key => $value) {
+               foreach ($value as $key2 => $value2) {
+                    var_dump($value2);
+               }
+               foreach ($start as $key4 => $value4) {
+                   var_dump($key4);
+               }
+        }
+        //var_dump($datatext);
+        
+        // foreach ($datatext as $key => $value) {
+        //      foreach ($value as $key2 => $value2) {
+        //          var_dump($value2);
+        //      }
+        // }
+       //var_dump($aa);
     
     }
 
