@@ -69,7 +69,7 @@ class Json2VideoJob implements ShouldQueue
         $movie->setAPIKey(config('config.token'));
         $movie->resolution = 'instagram-story';
         $movie->quality = 'high';
-        $movie->draft = true;
+        $movie->draft = false;
         $scene1 = new Scene;
         $scene1->addElement([
             'type' => 'video',
@@ -140,7 +140,7 @@ class Json2VideoJob implements ShouldQueue
     */
     public function failed(Throwable $exception): void
     {
-        Log::info("FAILED",$exception);
+        Log::info("FAILED",$exception->getMessage());
     }
 
 

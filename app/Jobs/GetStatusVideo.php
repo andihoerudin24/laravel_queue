@@ -18,20 +18,22 @@ class GetStatusVideo implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $tries = 3;
+    public $tries = 5;
 
-    protected $projectId;
+    // protected $projectId;
 
-    protected $userId;
+    // protected $userId;
 
 
     /**
      * Create a new job instance.
     */
-    public function __construct($projectId, $userId)
+    public function __construct(
+        //$projectId, $userId
+        )
     {
-        $this->projectId = $projectId;
-        $this->userId    = $userId;
+        // $this->projectId = $projectId;
+        // $this->userId    = $userId;
     }
 
     /**
@@ -39,32 +41,38 @@ class GetStatusVideo implements ShouldQueue
     */
     public function handle(): void
     {
-        $movie = new Movie;
-        $movie->setAPIKey(config('config.token'));
-        $status = $movie->getStatus($this->projectId);
-        if (!$status["movie"]["success"]) {
-               $this->release();
-        } else {
-            DB::transaction(function () use($status) {
-                DB::table("jsonvideo")
-                ->where('id_user',$this->userId)
-                ->where('projectid',$this->projectId)
-                ->update(
-                    [   
-                        "url" => $status["movie"]["url"],
-                        "custom_data" => $status
-                    ]
-                );
-            });
-        }     
+        //echo $this->projectId;
+        $getstatus = DB::table("jsonvideo")->get();
+        foreach ($getstatus as $key => $value) {
+            echo $value->projectid;
+            $movie = new Movie;
+            $movie->setAPIKey(config('config.token'));
+            $status = $movie->getStatus($value->projectid);
+            if (!$status["movie"]["success"]) {
+                  $this->release();
+            } else {
+                DB::transaction(function () use($value,$status) {
+                    DB::table("jsonvideo")
+                    ->where('id_user',$value->id_user)
+                    ->where('projectid',$value->projectid)
+                    ->update(
+                        [   
+                            "url" => $status["movie"]["url"],
+                            "custom_data" => $status
+                            
+                        ]
+                    );
+                });
+            }
+        }
+        
     }
-    /**
-        * Determine the time at which the job should timeout.
-    */
-    public function retryUntil(): DateTime
+
+    public function backoff(): array
     {
-        return now()->addMinutes(2);
+        return [10, 30, 30,30,30];
     }
+
 
      /**
      * Handle a job failure.

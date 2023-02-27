@@ -8,28 +8,32 @@ use App\Models\Jsonvideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class Json2VideoController extends Controller
 {
     public function index()
     {
-        echo "proses";
         $json2video = DB::table("jsonvideo")->get();
-        $getstatus = DB::table("jsonvideo")->get();
-        Bus::chain([
-            function () use($json2video) {
-                foreach ($json2video as $key => $value) {
-                    Json2VideoJob::dispatch($value->id);
-                }
-            },
+        //$getstatus = DB::table("jsonvideo")->limit(1)->get();
+        // $jobs = [];
+        foreach ($json2video as $key => $value) {
+            //$jobs[] = new Json2VideoJob($value->id_user);
+            Json2VideoJob::dispatch($value->id_user)->onQueue("upload");
+        }
+        GetStatusVideo::dispatch()->onQueue("status");
+        // foreach ($getstatus as $key => $value) {
+        //     //$jobs[] = new GetStatusVideo($value->projectid,$value->id_user);
+        //     //GetStatusVideo::dispatch($value->projectid,$value->id_user)->onQueue("status");
+        // }
+        // Bus::chain($jobs)->catch(function (Throwable $e) {
+        //      var_dump('error',$e->getMessage());
+        // })->dispatch();
+        
+        
+        
+        
 
-            function () use($getstatus) {
-                foreach ($getstatus as $key => $value) {
-                    foreach ($getstatus as $key => $value) {
-                        GetStatusVideo::dispatch($value->projectid,$value->id);
-                    }
-                }
-            },
-        ])->onQueue("upload_and_getstatus")->dispatch();        
+                    
     }
 }
