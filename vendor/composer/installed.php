@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => '1f118cd706e24a7e7676c1992a8967517b714902',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '1e797487a0b22c7e669e38d622e5bbd864918803',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -355,6 +355,15 @@
                 0 => 'v10.0.0',
             ),
         ),
+        'json2video/json2video-php-sdk' => array(
+            'pretty_version' => 'v2.0.1',
+            'version' => '2.0.1.0',
+            'reference' => 'f10ee307d9471188673229a964ae4fe72f2160ff',
+            'type' => 'sdk',
+            'install_path' => __DIR__ . '/../json2video/json2video-php-sdk',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -371,9 +380,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => '1f118cd706e24a7e7676c1992a8967517b714902',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '1e797487a0b22c7e669e38d622e5bbd864918803',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -706,8 +715,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(

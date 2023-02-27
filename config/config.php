@@ -28,13 +28,14 @@ return [
 		"Alhamdulillah lima Hari ini kita bisa berbuka puasa bersama keluarga tercinta, semoga kita diberi keberkahan selalu hingga akhir Ramadan tahun ini"
 	]
   ],
-
   "start" => [
 	  4,9,14,19,24
   ],
   "fade" => [
-	 "fade-in" => 0,25,
-	 "fade-out" => 0.25,
+	 "fadein" => 0.5,
+	 "fadeout" => 0.25,
   ],
-  "duration" => [4]
+  "duration" => [4],
+  "url" => "https://cdnstatic.detik.com/internal/testpage/alhamdulillah%20challenge%2031s_2.mp4?q=25",
+  "token" => "RSU5ntFSJZ3cMICuK7So52B1xVQfv2pl7sH9vseT",
 ];

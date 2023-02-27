@@ -1211,6 +1211,43 @@
             "install-path": "../hamcrest/hamcrest-php"
         },
         {
+            "name": "json2video/json2video-php-sdk",
+            "version": "v2.0.1",
+            "version_normalized": "2.0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JSON2Video/json2video-php-sdk.git",
+                "reference": "f10ee307d9471188673229a964ae4fe72f2160ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JSON2Video/json2video-php-sdk/zipball/f10ee307d9471188673229a964ae4fe72f2160ff",
+                "reference": "f10ee307d9471188673229a964ae4fe72f2160ff",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "time": "2022-09-02T15:30:43+00:00",
+            "type": "sdk",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "JSON2Video\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP SDK for JSON2Video API: Create videos programmatically",
+            "support": {
+                "issues": "https://github.com/JSON2Video/json2video-php-sdk/issues",
+                "source": "https://github.com/JSON2Video/json2video-php-sdk/tree/v2.0.1"
+            },
+            "install-path": "../json2video/json2video-php-sdk"
+        },
+        {
             "name": "laravel/framework",
             "version": "v10.0.0",
             "version_normalized": "10.0.0.0",

@@ -122,6 +122,10 @@ class ComposerStaticInit7799aec696ab54757d6a2620249a6dd0
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
         ),
+        'J' => 
+        array (
+            'JSON2Video\\' => 11,
+        ),
         'I' => 
         array (
             'Illuminate\\Support\\' => 19,
@@ -403,6 +407,10 @@ class ComposerStaticInit7799aec696ab54757d6a2620249a6dd0
         array (
             0 => __DIR__ . '/..' . '/laravel/sail/src',
         ),
+        'JSON2Video\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/json2video/json2video-php-sdk/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
@@ -506,6 +514,7 @@ class ComposerStaticInit7799aec696ab54757d6a2620249a6dd0
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndexController.php',
+        'App\\Http\\Controllers\\Json2VideoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Json2VideoController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -521,12 +530,17 @@ class ComposerStaticInit7799aec696ab54757d6a2620249a6dd0
         'App\\Jobs\\DispatchAfterResponseTest' => __DIR__ . '/../..' . '/app/Jobs/DispatchAfterResponseTest.php',
         'App\\Jobs\\FailingJob' => __DIR__ . '/../..' . '/app/Jobs/FailingJob.php',
         'App\\Jobs\\JobSeparateMiddleware' => __DIR__ . '/../..' . '/app/Jobs/JobSeparateMiddleware.php',
+        'App\\Jobs\\Jobbatchable' => __DIR__ . '/../..' . '/app/Jobs/Jobbatchable.php',
+        'App\\Jobs\\Jobbatchable2' => __DIR__ . '/../..' . '/app/Jobs/Jobbatchable2.php',
         'App\\Jobs\\JobmiddlewareTest' => __DIR__ . '/../..' . '/app/Jobs/JobmiddlewareTest.php',
+        'App\\Jobs\\Json2VideoJob' => __DIR__ . '/../..' . '/app/Jobs/Json2VideoJob.php',
         'App\\Jobs\\OverlapsJob' => __DIR__ . '/../..' . '/app/Jobs/OverlapsJob.php',
         'App\\Jobs\\PriorityTest' => __DIR__ . '/../..' . '/app/Jobs/PriorityTest.php',
         'App\\Jobs\\ProcessPodcast' => __DIR__ . '/../..' . '/app/Jobs/ProcessPodcast.php',
         'App\\Jobs\\RateLimitJobTest' => __DIR__ . '/../..' . '/app/Jobs/RateLimitJobTest.php',
         'App\\Jobs\\ReleasingAJob' => __DIR__ . '/../..' . '/app/Jobs/ReleasingAJob.php',
+        'App\\Jobs\\ShowProgressJob' => __DIR__ . '/../..' . '/app/Jobs/ShowProgressJob.php',
+        'App\\Jobs\\SkipIfBatchCancelledJob' => __DIR__ . '/../..' . '/app/Jobs/SkipIfBatchCancelledJob.php',
         'App\\Jobs\\SynchronousJobTest' => __DIR__ . '/../..' . '/app/Jobs/SynchronousJobTest.php',
         'App\\Jobs\\TestDependencyJob' => __DIR__ . '/../..' . '/app/Jobs/TestDependencyJob.php',
         'App\\Jobs\\TestModelJob' => __DIR__ . '/../..' . '/app/Jobs/TestModelJob.php',
@@ -2701,6 +2715,9 @@ class ComposerStaticInit7799aec696ab54757d6a2620249a6dd0
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'JSON2Video\\Base' => __DIR__ . '/..' . '/json2video/json2video-php-sdk/src/Base.php',
+        'JSON2Video\\Movie' => __DIR__ . '/..' . '/json2video/json2video-php-sdk/src/Movie.php',
+        'JSON2Video\\Scene' => __DIR__ . '/..' . '/json2video/json2video-php-sdk/src/Scene.php',
         'Laravel\\Sail\\Console\\AddCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/AddCommand.php',
         'Laravel\\Sail\\Console\\Concerns\\InteractsWithDockerComposeServices' => __DIR__ . '/..' . '/laravel/sail/src/Console/Concerns/InteractsWithDockerComposeServices.php',
         'Laravel\\Sail\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/InstallCommand.php',

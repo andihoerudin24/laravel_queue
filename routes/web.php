@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Json2VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,4 @@ Route::get('/', function () {
 
 Route::get('/dispatch/{batch_id?}',[IndexController::class,'index'])->name('dispatch');
 Route::get('/dashboard/{batch_id?}',[IndexController::class,'dashboard'])->name('dashboard');
+Route::get('/json2video/',[Json2VideoController::class,'index'])->name('json2video');
