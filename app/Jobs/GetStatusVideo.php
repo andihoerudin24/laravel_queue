@@ -43,10 +43,10 @@ class GetStatusVideo implements ShouldQueue
     {
         //echo $this->projectId;
         $getstatus = DB::table("jsonvideo")->get();
+        $movie = new Movie;
+        $movie->setAPIKey(config('config.token'));
         foreach ($getstatus as $key => $value) {
             echo $value->projectid;
-            $movie = new Movie;
-            $movie->setAPIKey(config('config.token'));
             $status = $movie->getStatus($value->projectid);
             if (!$status["movie"]["success"]) {
                   $this->release();

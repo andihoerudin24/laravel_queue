@@ -36,6 +36,6 @@ return [
 	 "fadeout" => 0.25,
   ],
   "duration" => [4],
-  "url" => "https://cdnstatic.detik.com/internal/testpage/alhamdulillah%20challenge%2031s_2.mp4?q=25",
+  "url" => "https://cdnstatic.detik.com/internal/testpage/alhamdulillah%20challenge%2031s_2.mp4?q=26",
   "token" => "RSU5ntFSJZ3cMICuK7So52B1xVQfv2pl7sH9vseT",
 ];
