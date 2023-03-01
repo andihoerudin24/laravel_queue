@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\GetStatusVideo;
 use App\Jobs\Json2VideoJob;
+use App\Jobs\Json2VideoJob60;
 use App\Jobs\ShouldBeUniqueUntilProcessingJob;
 use App\Models\Jsonvideo;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class Json2VideoController extends Controller
         foreach ($json2video as $key => $value) {
             $jobs[] = new Json2VideoJob($value->id_user);
         }
-        $jobs[] = new GetStatusVideo;
+        //$jobs[] = new GetStatusVideo;
         Bus::chain($jobs)->catch(function (Throwable $e) {
              var_dump('error',$e->getMessage());
         })->dispatch();
@@ -32,5 +33,18 @@ class Json2VideoController extends Controller
         // }
 
                     
+    }
+
+    public function index60()
+    {
+        $json2video = DB::table("jsonvideo")->get();
+        $jobs = [];
+        foreach ($json2video as $key => $value) {
+            $jobs[] = new Json2VideoJob60($value->id_user);
+        }
+        //$jobs[] = new GetStatusVideo;
+        Bus::chain($jobs)->catch(function (Throwable $e) {
+             var_dump('error',$e->getMessage());
+        })->dispatch();
     }
 }

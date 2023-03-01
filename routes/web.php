@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::get('/dispatch/{batch_id?}',[IndexController::class,'index'])->name('dispatch');
 Route::get('/dashboard/{batch_id?}',[IndexController::class,'dashboard'])->name('dashboard');
 Route::get('/json2video/',[Json2VideoController::class,'index'])->name('json2video');
+Route::get('/json2video60/',[Json2VideoController::class,'index60'])->name('json2video60');
