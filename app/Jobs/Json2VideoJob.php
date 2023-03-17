@@ -69,7 +69,7 @@ class Json2VideoJob implements ShouldQueue
         $movie->setAPIKey(config('config.token'));
         $movie->resolution = 'instagram-story';
         $movie->quality = 'high';
-        $movie->draft = false;
+        $movie->draft = true;
         $scene1 = new Scene;
         $scene1->addElement([
             'type' => 'video',
@@ -115,6 +115,7 @@ class Json2VideoJob implements ShouldQueue
         }
         $movie->addScene($scene1);
         $movie->render();
+        //$movie->waitToFinish();
 
         $statusmovie = $movie->getStatus();
         if ($statusmovie["success"]) {

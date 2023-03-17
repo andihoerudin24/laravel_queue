@@ -17,12 +17,17 @@ class Json2VideoController extends Controller
     public function index()
     {
         
-        $json2video = DB::table("jsonvideo")->get();
+        $json2video = DB::table("jsonvideo")
+        //->where('id',2)
+        ->whereNull('projectid')
+        ->limit(5)
+        ->get();
+        
         $jobs = [];
         foreach ($json2video as $key => $value) {
             $jobs[] = new Json2VideoJob($value->id_user);
         }
-        //$jobs[] = new GetStatusVideo;
+        $jobs[] = new GetStatusVideo;
         Bus::chain($jobs)->catch(function (Throwable $e) {
              var_dump('error',$e->getMessage());
         })->dispatch();
@@ -37,12 +42,12 @@ class Json2VideoController extends Controller
 
     public function index60()
     {
-        $json2video = DB::table("jsonvideo")->get();
+        $json2video = DB::table("jsonvideo")->limit(1)->get();
+        
         $jobs = [];
         foreach ($json2video as $key => $value) {
             $jobs[] = new Json2VideoJob60($value->id_user);
         }
-        //$jobs[] = new GetStatusVideo;
         Bus::chain($jobs)->catch(function (Throwable $e) {
              var_dump('error',$e->getMessage());
         })->dispatch();

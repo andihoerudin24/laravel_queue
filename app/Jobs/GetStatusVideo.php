@@ -42,7 +42,9 @@ class GetStatusVideo implements ShouldQueue
     public function handle(): void
     {
         //echo $this->projectId;
-        $getstatus = DB::table("jsonvideo")->get();
+        $getstatus = DB::table("jsonvideo")
+        ->whereNotNull('projectid')
+        ->get();
         $movie = new Movie;
         $movie->setAPIKey(config('config.token'));
         foreach ($getstatus as $key => $value) {
@@ -70,7 +72,7 @@ class GetStatusVideo implements ShouldQueue
 
     public function backoff(): array
     {
-        return [10, 30, 30,30,30];
+        return [35, 65, 135,165,210];
     }
 
 

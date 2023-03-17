@@ -97,8 +97,8 @@ return [
   ],
   "duration60" => [4],
   "url60" => "https://cdnstatic.detik.com/internal/testpage/alhamdulillah%20challenge%2056s_2.mp4",
-  "url" => "https://cdnstatic.detik.com/internal/testpage/alhamdulillah%20challenge%2031s_2.mp4?q=26",
-  "token" => "EWqDstZfbz1RCTnSDnlUF4LqIZa09A1VaQLqASD6",
+  "url" => "https://cdnstatic.detik.com/internal/testpage/alhamdulillah%20challenge%2031s_2.mp4",
+  "token" => "6GBH3ik5SZ5QZYLJFv7jf5D2EWgfE2Pv8nXgLw8o",
   
   "datadoa" => [
 		"user1" => [
