@@ -41,7 +41,7 @@ class IndexController extends Controller
     {
         echo "prosess";
         // ProcessPodcast::dispatch()->onQueue("emails");
-        // PriorityTest::dispatch();
+        PriorityTest::dispatch();
 
         
         // $tesmodeldata = new PriorityModel();

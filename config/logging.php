@@ -113,6 +113,14 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'supervisorLog' => [
+            'driver' => 'single',
+            'name' => 'supervisor-log',
+            // path should be same as stdout_logfile in supervisord.conf
+            'path' => storage_path('logs/custom.log'), 
+            'locking' => false
+        ],
     ],
 
 ];
